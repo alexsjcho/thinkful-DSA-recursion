@@ -3,17 +3,16 @@
 // Input: [1, 2, 3]
 // Output: [2, 4, 6]
 
-function doubleArrayItems() {
-  let doubleArray = [];
-  let currentArray = [1, 2, 3];
-  for (let i = 0; i > currentArray.length; i++) {
-    if (doubleArray[2] === 6) {
-      return "It is done";
-    } else {
-      doubleArray = currentArray * 2;
-      doubleArrayItems(currentArray);
-    }
+function doubleArrayItems(array) {
+  let currentArray = array;
+  if (array.length == 1) {
+    return array[0] * 2;
   }
+  let resultsArray = [];
+  for (let i = 0; i < currentArray.length; i++) {
+    resultsArray.push(doubleArrayItems([currentArray[i]]));
+  }
+  return resultsArray;
 }
 
-doubleArrayItems(1, 2, 3);
+console.log(doubleArrayItems([1, 2, 3]));
