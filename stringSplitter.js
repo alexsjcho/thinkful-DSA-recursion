@@ -1,20 +1,21 @@
 // Split a string based upon a separator (similar to String.prototype.split).
 
-function stringSplitter(string) {
-  //base case
-  let emptyArray = [];
+function stringSplitter(string, array) {
+  //Determine if we need to split string
   let stringContainsSpace = string.includes(" ");
+  //Find where word ends and grab that index
   let findWhereWordEnds = string.indexOf(" ");
-  let getEntireWordString = string.substring(0, findWhereWordEnds);
-  let getRemaindingWord = getEntireWordString.substring(findWhereWordEnds, -1);
-  console.log(string);
+  let firstWordOfString = string.substring(0, findWhereWordEnds);
+  let remainingPartOfString = string.substring(findWhereWordEnds + 1);
+  //base case
   if (stringContainsSpace === false) {
-    return emptyArray;
+    array.push(string);
+    return array;
   } else {
-    emptyArray.push(getEntireWordString);
+    array.push(firstWordOfString);
     //call the function
-    return stringSplitter(getRemaindingWord);
+    return stringSplitter(remainingPartOfString, array);
   }
 }
 
-stringSplitter("Hello World Yo Bro Done Man");
+stringSplitter("Lets get out of this recurcion", []);
