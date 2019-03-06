@@ -8,11 +8,21 @@ https://www.youtube.com/watch?v=TQaIiNJIaYg
 
 */
 
+//Iterative Solution
+
 let anagrams = [];
 
 let genAnagrams = (word, anagram) => {
-  for (let i = 0; i < word.length; i++) {}
+  if (!word) {
+    anagrams.push(anagram);
+    return;
+  }
+  for (let i = 0; i < word.length; i++) {
+    anagram += word[i];
+    genAnagrams(word.slice(0, i) + word.slice(i + 1), anagram);
+    anagram = anagram.slice(0, anagram.length - 1);
+  }
 };
 
-genAnagrams("ABC");
+genAnagrams("Cho");
 console.log(anagrams);
